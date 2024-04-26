@@ -196,14 +196,18 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 					// Toggle when the button is pressed and do nothing when it lifts.
 					if b.on { // Turn off if on.
 						d.buttons[mode][i].Off()
-						midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 0)
+						if err := midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 0); err != nil {
+							return fmt.Errorf("failed to send midi: %w", err)
+						}
 
 						if d.log {
 							fmt.Printf("%s turned off\n", b.spec.Name)
 						}
 					} else { // Turn on if off.
 						d.buttons[mode][i].On()
-						midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 127)
+						if err := midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 127); err != nil {
+							return fmt.Errorf("failed to send midi: %w", err)
+						}
 
 						if d.log {
 							fmt.Printf("%s turned on\n", b.spec.Name)
@@ -223,7 +227,9 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 
 				if !b.on {
 					d.buttons[mode][i].On()
-					midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 127)
+					if err := midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 127); err != nil {
+						return fmt.Errorf("failed to send midi: %w", err)
+					}
 
 					if d.log {
 						fmt.Printf("%s turned on\n", b.spec.Name)
@@ -232,7 +238,9 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 			} else {
 				if b.on {
 					d.buttons[mode][i].Off()
-					midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 0)
+					if err := midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 0); err != nil {
+						return fmt.Errorf("failed to send midi: %w", err)
+					}
 
 					if d.log {
 						fmt.Printf("%s turned off\n", b.spec.Name)
@@ -282,7 +290,9 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 
 			if prev != cur {
 				d.knobs[i].setValue(cur)
-				midiSend(d.midiOut, d.currentMidiChannel(), k.spec.MIDICC, cur)
+				if err := midiSend(d.midiOut, d.currentMidiChannel(), k.spec.MIDICC, cur); err != nil {
+					return fmt.Errorf("failed to send midi: %w", err)
+				}
 
 				if d.log {
 					fmt.Printf("%s value changed %d\n", d.knobs[i].spec.Name, d.knobs[i].value)
@@ -331,7 +341,7 @@ func (d *Driver) createLedBufferFromButtons() ([]byte, error) {
 
 func (d *Driver) currentMidiChannel() int {
 	// 8 or 9.
-	return 8 + d.currentMode()
+	return 0xB7 + d.currentMode()
 }
 
 func (d *Driver) currentMode() int {
@@ -362,7 +372,11 @@ func knobValueFromBuffer(spec *spec, buf []byte) (int, error) {
 	return int(math.Round(result)), nil
 }
 
-func midiSend(out mididrivers.Out, channel, cc int, velocity int) {
+func midiSend(out mididrivers.Out, channel, cc int, velocity int) error {
 	fmt.Printf("MIDI Channel=%d CC=%d Velocity=%d\n", channel, cc, velocity)
-	out.Send([]byte{byte(channel), byte(cc), byte(velocity)})
+	if err := out.Send([]byte{byte(channel), byte(cc), byte(velocity)}); err != nil {
+		return fmt.Errorf("failed to send midi: %w", err)
+	}
+
+	return nil
 }
