@@ -195,8 +195,6 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 
 					// Toggle when the button is pressed and do nothing when it lifts.
 					if b.on { // Turn off if on.
-						// DEBUG
-
 						d.buttons[mode][i].Off()
 						midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 0)
 
@@ -204,7 +202,6 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 							fmt.Printf("%s turned off\n", b.spec.Name)
 						}
 					} else { // Turn on if off.
-
 						d.buttons[mode][i].On()
 						midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 127)
 
@@ -212,7 +209,6 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 							fmt.Printf("%s turned on\n", b.spec.Name)
 						}
 					}
-
 				}
 
 				d.buttons[mode][i].pressed = pressed
@@ -226,21 +222,21 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 				}
 
 				if !b.on {
+					d.buttons[mode][i].On()
+					midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 127)
+
 					if d.log {
 						fmt.Printf("%s turned on\n", b.spec.Name)
 					}
-
-					d.buttons[mode][i].On()
-					midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 127)
 				}
 			} else {
 				if b.on {
+					d.buttons[mode][i].Off()
+					midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 0)
+
 					if d.log {
 						fmt.Printf("%s turned off\n", b.spec.Name)
 					}
-
-					d.buttons[mode][i].Off()
-					midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 0)
 				}
 			}
 		case 3: // SHIFT
@@ -248,10 +244,18 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 			if pressed {
 				if !b.on {
 					d.buttons[mode][i].On()
+
+					if d.log {
+						fmt.Printf("%s turned on\n", b.spec.Name)
+					}
 				}
 			} else {
 				if b.on {
 					d.buttons[mode][i].Off()
+
+					if d.log {
+						fmt.Printf("%s turned off\n", b.spec.Name)
+					}
 				}
 			}
 
