@@ -20,6 +20,7 @@ func main() {
 	for {
 		if err := d.NextState(); err != nil {
 			log.Printf("next state failed: %v", err)
-		 
+
+		}
 	}
 }
