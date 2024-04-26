@@ -11,11 +11,14 @@ import (
 var f embed.FS
 
 type spec struct {
-	Name       string `yaml:"name"`   // the button description
-	Type       string `yaml:"type"`   // Toggle, Encoder, Hold or Hotcue
-	BuferIndex int    `yaml:"bufIdx"` // buffer index
-	LEDIndex   int    `yaml:"ledIdx"` // led index
-	MIDICC     int    `yaml:"midiCC"` // midi control change mapping
+	Name        string `yaml:"name"`        // the button description
+	Type        string `yaml:"type"`        // Toggle, Encoder, Hold or Hotcue
+	BuferIndex  int    `yaml:"bufIdx"`      // buffer index
+	LEDIndex    int    `yaml:"ledIdx"`      // led index
+	OnMIDICC    int    `yaml:"onMidiCC"`    // turn on midi cc
+	OffMIDICC   int    `yaml:"offMidiCC"`   // turn off midi cc
+	OnVelocity  int    `yaml:"onVelocity"`  // turn on velocity button
+	OffVelocity int    `yaml:"offVelocity"` // turn off velocity button
 }
 
 func readSpecs() ([]spec, error) {

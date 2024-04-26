@@ -196,7 +196,7 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 					// Toggle when the button is pressed and do nothing when it lifts.
 					if b.on { // Turn off if on.
 						d.buttons[mode][i].Off()
-						if err := midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 0); err != nil {
+						if err := midiSend(d.midiOut, d.currentMidiChannel(), b.spec.OffMIDICC, b.spec.OffVelocity); err != nil {
 							return fmt.Errorf("failed to send midi: %w", err)
 						}
 
@@ -205,7 +205,7 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 						}
 					} else { // Turn on if off.
 						d.buttons[mode][i].On()
-						if err := midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 127); err != nil {
+						if err := midiSend(d.midiOut, d.currentMidiChannel(), b.spec.OnMIDICC, b.spec.OnVelocity); err != nil {
 							return fmt.Errorf("failed to send midi: %w", err)
 						}
 
@@ -227,7 +227,7 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 
 				if !b.on {
 					d.buttons[mode][i].On()
-					if err := midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 127); err != nil {
+					if err := midiSend(d.midiOut, d.currentMidiChannel(), b.spec.OnMIDICC, b.spec.OnVelocity); err != nil {
 						return fmt.Errorf("failed to send midi: %w", err)
 					}
 
@@ -238,7 +238,7 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 			} else {
 				if b.on {
 					d.buttons[mode][i].Off()
-					if err := midiSend(d.midiOut, d.currentMidiChannel(), b.spec.MIDICC, 0); err != nil {
+					if err := midiSend(d.midiOut, d.currentMidiChannel(), b.spec.OffMIDICC, b.spec.OffVelocity); err != nil {
 						return fmt.Errorf("failed to send midi: %w", err)
 					}
 
@@ -290,7 +290,7 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 
 			if prev != cur {
 				d.knobs[i].setValue(cur)
-				if err := midiSend(d.midiOut, d.currentMidiChannel(), k.spec.MIDICC, cur); err != nil {
+				if err := midiSend(d.midiOut, d.currentMidiChannel(), k.spec.OnMIDICC, cur); err != nil {
 					return fmt.Errorf("failed to send midi: %w", err)
 				}
 

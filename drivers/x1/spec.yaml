@@ -3,303 +3,478 @@
   type: "Shift"
   bufIdx: 36
   ledIdx: 29
-  midiCC: 45
+  onMidiCC: 45
+  offMidiCC: 45
+  onVelocity: 127
+  offVelocity: 0
 - name: "HOTCUE"
   type: "Toggle"
   bufIdx: 39
   ledIdx: 31
-  midiCC: 46
+  onMidiCC: 46
+  offMidiCC: 47
+  onVelocity: 127
+  offVelocity: 127
+  
 # EFFECTS
 # FX1
 - name: "FX1_BUTTON_PLAY"
   type: "Toggle"
   bufIdx: 28
   ledIdx: 8
-  midiCC: 8
+  onMidiCC: 8
+  offMidiCC: 8
+  onVelocity: 127
+  offVelocity: 0
 - name: "FX1_BUTTON_1"
   type: "Toggle"
   bufIdx: 29
   ledIdx: 7
-  midiCC: 10
+  onMidiCC: 10
+  offMidiCC: 10
+  onVelocity: 127
+  offVelocity: 0
 - name: "FX1_BUTTON_2"
   type: "Toggle"
   bufIdx: 30
   ledIdx: 6
-  midiCC: 12
+  onMidiCC: 12
+  offMidiCC: 12
+  onVelocity: 127
+  offVelocity: 0
 - name: "FX1_BUTTON_3"
   type: "Toggle"
   bufIdx: 31
   ledIdx: 5
-  midiCC: 14
+  onMidiCC: 14
+  offMidiCC: 14
+  onVelocity: 127
+  offVelocity: 0
 - name: "FX1_KNOB_DRY"
   type: "Knob"
   bufIdx: 16
-  midiCC: 0
+  onMidiCC: 0
+  offMidiCC: 0
+  onVelocity: 127
+  offVelocity: 0
 - name: "FX1_KNOB_1"
   type: "Knob"
   bufIdx: 20
-  midiCC: 2
+  onMidiCC: 2
+  offMidiCC: 2
+  onVelocity: 127
+  offVelocity: 0
 - name: "FX1_KNOB_2"
   type: "Knob"
   bufIdx: 22
-  midiCC: 4
+  onMidiCC: 4
+  offMidiCC: 4
+  onVelocity: 127
+  offVelocity: 0
 - name: "FX1_KNOB_3"
   type: "Knob"
   bufIdx: 18
-  midiCC: 6
+  onMidiCC: 6
+  offMidiCC: 6
+  onVelocity: 127
+  offVelocity: 0
 # FX2
 - name: "FX2_BUTTON_PLAY"
   type: "Toggle"
   bufIdx: 32
   ledIdx: 4
-  midiCC: 9
+  onMidiCC: 9
+  offMidiCC: 9
+  onVelocity: 127
+  offVelocity: 0
 - name: "FX2_BUTTON_1"
   type: "Toggle"
   bufIdx: 33
   ledIdx: 3
-  midiCC: 11
+  onMidiCC: 11
+  offMidiCC: 11
+  onVelocity: 127
+  offVelocity: 0
 - name: "FX2_BUTTON_2"
   type: "Toggle"
   bufIdx: 34
   ledIdx: 2
-  midiCC: 13
+  onMidiCC: 13
+  offMidiCC: 13
+  onVelocity: 127
+  offVelocity: 0
 - name: "FX2_BUTTON_3"
   type: "Toggle"
   bufIdx: 35
   ledIdx: 1
-  midiCC: 15
+  onMidiCC: 15
+  offMidiCC: 15
+  onVelocity: 127
+  offVelocity: 0
 - name: "FX2_KNOB_DRY"
   type: "Knob"
   bufIdx: 12
-  midiCC: 1
+  onMidiCC: 1
 - name: "FX2_KNOB_1"
   type: "Knob"
   bufIdx: 10
-  midiCC: 3
+  onMidiCC: 3
 - name: "FX2_KNOB_2"
   type: "Knob"
   bufIdx: 8
-  midiCC: 5
+  onMidiCC: 5
 - name: "FX2_KNOB_3"
   type: "Knob"
   bufIdx: 14
-  midiCC: 7
+  onMidiCC: 7
 # DECKS
 # DECK A
 - name: "DECK_A_ENCODER_BROWSE"
   type: "Encoder"
   # bufIdx: 24 
-  midiCC: 16
+  onMidiCC: 16
+  offMidiCC: 16
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_A_BUTTON_BROWSE"
   type: "Hold"
   bufIdx: 24
-  midiCC: 18
+  onMidiCC: 18
+  offMidiCC: 18
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_A_BUTTON_FX1"
   type: "Toggle"
   bufIdx: 9
   ledIdx: 25
-  midiCC: 20
+  onMidiCC: 20
+  offMidiCC: 20
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_A_BUTTON_FX2"
   type: "Toggle"
   bufIdx: 8
   ledIdx: 26
-  midiCC: 22
+  onMidiCC: 22
+  offMidiCC: 22
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_A_ENCODER_LOOP"
   type: "Encoder"
   # bufIdx: 26
-  midiCC: 26
+  onMidiCC: 26
+  offMidiCC: 26
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_A_BUTTON_LOOP"
   type: "Hold"
   bufIdx: 26
-  midiCC: 24
+  onMidiCC: 24
+  offMidiCC: 24
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_A_BUTTON_IN"
   type: "Toggle"
   bufIdx: 20
   ledIdx: 18
-  midiCC: 28
+  onMidiCC: 28
+  offMidiCC: 28
+  onVelocity: 127
+  offVelocity: 0
   hotcueIgnore: true
 - name: "DECK_A_BUTTON_OUT"
   type: "Toggle"
   bufIdx: 3
   ledIdx: 17
-  midiCC: 30
+  onMidiCC: 30
+  offMidiCC: 30
+  onVelocity: 127
+  offVelocity: 0
   hotcueIgnore: true
 - name: "DECK_A_BUTTON_BEAT_LEFT"
   type: "Toggle"
   bufIdx: 2
   ledIdx: 20
-  midiCC: 32
+  onMidiCC: 32
+  offMidiCC: 32
+  onVelocity: 127
+  offVelocity: 0
   hotcueIgnore: true
 - name: "DECK_A_BUTTON_BEAT_RIGHT"
   type: "Toggle"
   bufIdx: 21
   ledIdx: 19
-  midiCC: 34
+  onMidiCC: 34
+  offMidiCC: 34
+  onVelocity: 127
+  offVelocity: 0
   hotcueIgnore: true
 - name: "DECK_A_BUTTON_CUE"
   type: "Toggle"
   bufIdx: 1
   ledIdx: 22
-  midiCC: 36
+  onMidiCC: 36
+  offMidiCC: 36
+  onVelocity: 127
+  offVelocity: 0
   hotcueIgnore: true
 - name: "DECK_A_BUTTON_CUP"
   type: "Toggle"
   bufIdx: 22
   ledIdx: 21
-  midiCC: 38
+  onMidiCC: 38
+  offMidiCC: 38
+  onVelocity: 127
+  offVelocity: 0
   hotcueIgnore: true
 - name: "DECK_A_BUTTON_PLAY"
   type: "Toggle"
   bufIdx: 0
   ledIdx: 24
-  midiCC: 40
+  onMidiCC: 40
+  offMidiCC: 40
+  onVelocity: 127
+  offVelocity: 0
   hotcueIgnore: true
 - name: "DECK_A_BUTTON_SYNC"
   type: "Toggle"
   bufIdx: 23
   ledIdx: 23
-  midiCC: 42
+  onMidiCC: 42
+  offMidiCC: 42
+  onVelocity: 127
+  offVelocity: 0
   hotcueIgnore: true
 # DECK B
 - name: "DECK_B_ENCODER_BROWSE"
   type: "Encoder"
   # bufIdx: 6
   # readPos: "e"
-  midiCC: 17
+  onMidiCC: 17
+  offMidiCC: 17
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_B_BUTTON_BROWSE"
   type: "Hold"
   bufIdx: 25
-  midiCC: 19
+  onMidiCC: 19
+  offMidiCC: 19
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_B_BUTTON_FX1"
   type: "Toggle"
   bufIdx: 38
   ledIdx: 27
-  midiCC: 21
+  onMidiCC: 21
+  offMidiCC: 21
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_B_BUTTON_FX2"
   type: "Toggle"
   bufIdx: 37
   ledIdx: 28
-  midiCC: 23
+  onMidiCC: 23
+  offMidiCC: 23
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_B_ENCODER_LOOP"
   type: "Encoder"
   # bufIdx: 7
   # readPos: "e"
-  midiCC: 27
+  onMidiCC: 27
+  offMidiCC: 27
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_B_BUTTON_LOOP"
   type: "Hold"
   bufIdx: 27
-  midiCC: 25
+  onMidiCC: 25
+  offMidiCC: 25
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_B_BUTTON_IN"
   type: "Toggle"
   bufIdx: 12
   ledIdx: 16
-  midiCC: 29
+  onMidiCC: 29
+  offMidiCC: 29
+  onVelocity: 127
+  offVelocity: 0
   hotcueIgnore: true
 - name: "DECK_B_BUTTON_OUT"
   type: "Toggle"
   bufIdx: 19
   ledIdx: 15
-  midiCC: 31
+  onMidiCC: 31
+  offMidiCC: 31
+  onVelocity: 127
+  offVelocity: 0
   hotcueIgnore: true
 - name: "DECK_B_BUTTON_BEAT_LEFT"
   type: "Toggle"
   bufIdx: 18
   ledIdx: 14
-  midiCC: 33
+  onMidiCC: 33
+  offMidiCC: 33
+  onVelocity: 127
+  offVelocity: 0
   hotcueIgnore: true
 - name: "DECK_B_BUTTON_BEAT_RIGHT"
   type: "Toggle"
   bufIdx: 13
   ledIdx: 13
-  midiCC: 35
+  onMidiCC: 35
+  offMidiCC: 35
+  onVelocity: 127
+  offVelocity: 0
   hotcueIgnore: true
 - name: "DECK_B_BUTTON_CUE"
   type: "Toggle"
   bufIdx: 17
   ledIdx: 12
-  midiCC: 37
+  onMidiCC: 37
+  offMidiCC: 37
+  onVelocity: 127
+  offVelocity: 0
   hotcueIgnore: true
 - name: "DECK_B_BUTTON_CUP"
   type: "Toggle"
   bufIdx: 14
   ledIdx: 11
-  midiCC: 39
+  onMidiCC: 39
+  offMidiCC: 39
+  onVelocity: 127
+  offVelocity: 0
   hotcueIgnore: true
 - name: "DECK_B_BUTTON_PLAY"
   type: "Toggle"
   bufIdx: 16
   ledIdx: 10
-  midiCC: 41
+  onMidiCC: 41
+  offMidiCC: 41
+  onVelocity: 127
+  offVelocity: 0
   hotcueIgnore: true
 - name: "DECK_B_BUTTON_SYNC"
   type: "Toggle"
   bufIdx: 15
   ledIdx: 9
-  midiCC: 43
+  onMidiCC: 43
+  offMidiCC: 43
+  onVelocity: 127
+  offVelocity: 0
   hotcueIgnore: true
 # HOTCUES
 - name: "DECK_B_HOTCUE_1"
   type: "Hotcue"
   bufIdx: 1
-  midiCC: 7
+  onMidiCC: 7
+  offMidiCC: 7
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_B_HOTCUE_5"
   type: "Hotcue"
   bufIdx: 2
-  midiCC: 6
+  onMidiCC: 6
+  offMidiCC: 6
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_B_HOTCUE_2"
   type: "Hotcue"
   bufIdx: 2
-  midiCC: 5
+  onMidiCC: 5
+  offMidiCC: 5
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_B_HOTCUE_6"
   type: "Hotcue"
   bufIdx: 1
-  midiCC: 4
+  onMidiCC: 4
+  offMidiCC: 4
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_B_HOTCUE_3"
   type: "Hotcue"
   bufIdx: 2
-  midiCC: 3
+  onMidiCC: 3
+  offMidiCC: 3
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_B_HOTCUE_7"
   type: "Hotcue"
   bufIdx: 1
-  midiCC: 2
+  onMidiCC: 2
+  offMidiCC: 2
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_B_HOTCUE_4"
   type: "Hotcue"
   bufIdx: 2
-  midiCC: 1
+  onMidiCC: 1
+  offMidiCC: 1
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_B_HOTCUE_8"
   type: "Hotcue"
   bufIdx: 1
-  midiCC: 0
+  onMidiCC: 0
+  offMidiCC: 0
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_A_HOTCUE_1"
   type: "Hotcue"
   bufIdx: 2
-  midiCC: 9
+  onMidiCC: 9
+  offMidiCC: 9
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_A_HOTCUE_5"
   type: "Hotcue"
   bufIdx: 0
-  midiCC: 8
+  onMidiCC: 8
+  offMidiCC: 8
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_A_HOTCUE_2"
   type: "Hotcue"
   bufIdx: 0
-  midiCC: 11
+  onMidiCC: 11
+  offMidiCC: 11
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_A_HOTCUE_6"
   type: "Hotcue"
   bufIdx: 2
-  midiCC: 10
+  onMidiCC: 10
+  offMidiCC: 10
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_A_HOTCUE_3"
   type: "Hotcue"
   bufIdx: 0
-  midiCC: 13
+  onMidiCC: 13
+  offMidiCC: 13
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_A_HOTCUE_7"
   type: "Hotcue"
   bufIdx: 2
-  midiCC: 12
+  onMidiCC: 12
+  offMidiCC: 12
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_A_HOTCUE_4"
   type: "Hotcue"
   bufIdx: 0
-  midiCC: 15
+  onMidiCC: 15
+  offMidiCC: 15
+  onVelocity: 127
+  offVelocity: 0
 - name: "DECK_A_HOTCUE_8"
   type: "Hotcue"
   bufIdx: 2
-  midiCC: 14
+  onMidiCC: 14
+  offMidiCC: 14
+  onVelocity: 127
+  offVelocity: 0
  
