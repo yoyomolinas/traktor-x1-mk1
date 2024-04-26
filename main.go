@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-	"time"
 
 	"github.com/yoyomolinas/drivers/x1"
 )
@@ -21,9 +20,6 @@ func main() {
 	for {
 		if err := d.NextState(); err != nil {
 			log.Printf("next state failed: %v", err)
-		}
-
-		d.Disco()
-		time.Sleep(10 * time.Millisecond)
+		 
 	}
 }
