@@ -1,3 +1,4 @@
+# DESCRIPTION: ALL HOLD
 # SPECIALS
 - name: "SHIFT"
   type: "Shift"
@@ -8,7 +9,7 @@
   onVelocity: 127
   offVelocity: 0
 - name: "HOTCUE"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 39
   ledIdx: 31
   onMidiCC: 46
