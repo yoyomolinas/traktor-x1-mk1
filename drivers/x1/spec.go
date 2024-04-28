@@ -7,7 +7,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-//go:embed spec.yaml
+//go:embed specs/spec.yaml
 var f embed.FS
 
 type spec struct {
@@ -22,7 +22,7 @@ type spec struct {
 }
 
 func readSpecs() ([]spec, error) {
-	data, err := f.ReadFile("spec.yaml")
+	data, err := f.ReadFile("specs/spec.yaml")
 	if err != nil {
 		return nil, fmt.Errorf("failed to read config: %w", err)
 	}
