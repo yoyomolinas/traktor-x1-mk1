@@ -114,6 +114,7 @@ func NewDriver(options ...DriverOption) (*Driver, error) {
 func (d *Driver) Close() {
 	d.device.Close()
 	d.midiDriver.Close()
+	d.midiOut.Close()
 }
 
 func (d *Driver) NextState() error {
