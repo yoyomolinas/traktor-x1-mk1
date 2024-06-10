@@ -20,7 +20,7 @@
 # EFFECTS
 # FX1
 - name: "FX1_BUTTON_PLAY"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 28
   ledIdx: 8
   onMidiCC: 8
@@ -28,7 +28,7 @@
   onVelocity: 127
   offVelocity: 0
 - name: "FX1_BUTTON_1"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 29
   ledIdx: 7
   onMidiCC: 10
@@ -36,7 +36,7 @@
   onVelocity: 127
   offVelocity: 0
 - name: "FX1_BUTTON_2"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 30
   ledIdx: 6
   onMidiCC: 12
@@ -44,7 +44,7 @@
   onVelocity: 127
   offVelocity: 0
 - name: "FX1_BUTTON_3"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 31
   ledIdx: 5
   onMidiCC: 14
@@ -81,7 +81,7 @@
   offVelocity: 0
 # FX2
 - name: "FX2_BUTTON_PLAY"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 32
   ledIdx: 4
   onMidiCC: 9
@@ -89,7 +89,7 @@
   onVelocity: 127
   offVelocity: 0
 - name: "FX2_BUTTON_1"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 33
   ledIdx: 3
   onMidiCC: 11
@@ -97,7 +97,7 @@
   onVelocity: 127
   offVelocity: 0
 - name: "FX2_BUTTON_2"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 34
   ledIdx: 2
   onMidiCC: 13
@@ -105,7 +105,7 @@
   onVelocity: 127
   offVelocity: 0
 - name: "FX2_BUTTON_3"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 35
   ledIdx: 1
   onMidiCC: 15
