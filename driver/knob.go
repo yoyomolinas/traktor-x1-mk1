@@ -1,8 +1,7 @@
-package x1
+package driver
 
 type knob struct {
 	spec  *spec
-	mode  int // 2 for knob
 	value int // knob value between 0 - 127
 }
 
@@ -11,16 +10,12 @@ func (k *knob) setValue(d int) {
 }
 
 func knobFromSpec(spec spec) *knob {
-	var mode int
-	if spec.Type == "Knob" {
-		mode = 2
-	} else {
+	if spec.Type != "Knob" {
 		return nil
 	}
 
 	return &knob{
 		spec:  &spec,
-		mode:  mode,
 		value: 0,
 	}
 }

@@ -3,14 +3,15 @@ package main
 import (
 	"log"
 
-	"github.com/yoyomolinas/drivers/x1"
+	"github.com/yoyomolinas/driver"
 )
 
 func main() {
-	d, err := x1.NewDriver(
-	// x1.WithLogging(),
-	// x1.WithDebug(),
-	// x1.WithInspect(),
+	d, err := driver.NewDriver(
+		driver.WithLogging(),
+
+		// Inspect low level usb responses from the device.
+		// driver.WithInspect(),
 	)
 	if err != nil {
 		log.Fatalf("failed to create driver: %v", err)

@@ -1,4 +1,4 @@
-package x1
+package driver
 
 // flatBytes creates a bit slice from a byte slice by converting each bit in every byte to a boolean.
 func flatBytes(bytes []byte) []bool {

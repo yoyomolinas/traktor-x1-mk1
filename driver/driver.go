@@ -1,4 +1,4 @@
-package x1
+package driver
 
 import (
 	"context"
@@ -34,7 +34,6 @@ type Driver struct {
 
 	// enable / disable various tools when running the driver.
 	log     bool
-	debug   bool
 	inspect bool
 }
 
@@ -45,12 +44,8 @@ func WithLogging() DriverOption {
 		d.log = true
 	}
 }
-func WithDebug() DriverOption {
-	return func(d *Driver) {
-		d.debug = true
-	}
-}
 
+// WithInspect is a functional option to observe low level usb responses from X1.
 func WithInspect() DriverOption {
 	return func(d *Driver) {
 		d.inspect = true
@@ -81,7 +76,7 @@ func NewDriver(options ...DriverOption) (*Driver, error) {
 		log.Fatal(err)
 	}
 
-	midiOut, err := midiDriver.OpenVirtualOut("Joel Traktor X1")
+	midiOut, err := midiDriver.OpenVirtualOut("Traktor X1")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -165,39 +160,35 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 	// buttons on the X1.
 	buttonStates := flatBytes(in[1:6])
 
-	// if d.inspect {
-	// 	// Inspect the buttons.
-	// 	for i, s := range buttonStates {
-	// 		if s {
-	// 			fmt.Printf("pressed button: %d\n", i)
-	// 		}
-	// 	}
-	// }
+	if d.inspect {
+		// Inspect the buttons.
+		for i, s := range buttonStates {
+			if s {
+				fmt.Printf("pressed button: %d\n", i)
+			}
+		}
+	}
 
 	mode := d.currentMode()
 
 	for i, b := range d.buttons[mode] {
-		if b.spec.BuferIndex > len(buttonStates) {
-			return fmt.Errorf("button with index %d is overflowing the buffer of length %d", b.spec.BuferIndex, len(buttonStates))
+		if b.spec.BufferIndex > len(buttonStates) {
+			return fmt.Errorf("button with index %d is overflowing the buffer of length %d", b.spec.BufferIndex, len(buttonStates))
 		}
 
 		switch b.mode {
 
 		case 0: // TOGGLE
-			pressed := buttonStates[b.spec.BuferIndex]
+			pressed := buttonStates[b.spec.BufferIndex]
 
 			// We switch states on state changes, i.e. lift finger or press, and we do nothing in between, i.e.
 			// when you keep pressing the same button.
 			if b.pressed != pressed {
 				if pressed {
-					if d.debug {
-						fmt.Printf("button %s: %d is pressed, mode: %d, on: %v\n", b.spec.Name, b.spec.BuferIndex, b.mode, b.on)
-					}
-
 					// Toggle when the button is pressed and do nothing when it lifts.
 					if b.on { // Turn off if on.
 						d.buttons[mode][i].Off()
-						if err := midiSend(d.midiOut, d.currentMidiChannel(), b.spec.OffMIDICC, b.spec.OffVelocity); err != nil {
+						if err := d.midiSend(d.midiOut, d.currentMidiChannel(), b.spec.OffMIDICC, b.spec.OffVelocity); err != nil {
 							return fmt.Errorf("failed to send midi: %w", err)
 						}
 
@@ -206,7 +197,7 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 						}
 					} else { // Turn on if off.
 						d.buttons[mode][i].On()
-						if err := midiSend(d.midiOut, d.currentMidiChannel(), b.spec.OnMIDICC, b.spec.OnVelocity); err != nil {
+						if err := d.midiSend(d.midiOut, d.currentMidiChannel(), b.spec.OnMIDICC, b.spec.OnVelocity); err != nil {
 							return fmt.Errorf("failed to send midi: %w", err)
 						}
 
@@ -220,15 +211,11 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 			}
 
 		case 1: // HOLD
-			pressed := buttonStates[b.spec.BuferIndex]
+			pressed := buttonStates[b.spec.BufferIndex]
 			if pressed {
-				if d.debug {
-					fmt.Printf("button %s: %d is pressed, mode: %d, on: %v\n", b.spec.Name, b.spec.BuferIndex, b.mode, b.on)
-				}
-
 				if !b.on {
 					d.buttons[mode][i].On()
-					if err := midiSend(d.midiOut, d.currentMidiChannel(), b.spec.OnMIDICC, b.spec.OnVelocity); err != nil {
+					if err := d.midiSend(d.midiOut, d.currentMidiChannel(), b.spec.OnMIDICC, b.spec.OnVelocity); err != nil {
 						return fmt.Errorf("failed to send midi: %w", err)
 					}
 
@@ -239,7 +226,7 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 			} else {
 				if b.on {
 					d.buttons[mode][i].Off()
-					if err := midiSend(d.midiOut, d.currentMidiChannel(), b.spec.OffMIDICC, b.spec.OffVelocity); err != nil {
+					if err := d.midiSend(d.midiOut, d.currentMidiChannel(), b.spec.OffMIDICC, b.spec.OffVelocity); err != nil {
 						return fmt.Errorf("failed to send midi: %w", err)
 					}
 
@@ -249,7 +236,7 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 				}
 			}
 		case 3: // SHIFT
-			pressed := buttonStates[b.spec.BuferIndex]
+			pressed := buttonStates[b.spec.BufferIndex]
 			if pressed {
 				if !b.on {
 					d.buttons[mode][i].On()
@@ -273,35 +260,24 @@ func (d *Driver) updateFromBuffer(in []byte) error {
 	}
 
 	for i, k := range d.knobs {
+		prev := k.value
+		cur, err := d.knobValueFromBuffer(k.spec, in)
+		if err != nil {
+			return fmt.Errorf("failed to get knob value: %w", err)
+		}
 
-		if k.mode == 2 {
-			// if d.inspect {
-			// 	fmt.Printf("states: [ ")
-			// 	for _, b := range in {
-			// 		fmt.Printf("%d ", int(b))
-			// 	}
-			// 	fmt.Println("]")
-			// }
-
-			prev := k.value
-			cur, err := knobValueFromBuffer(k.spec, in)
-			if err != nil {
-				return fmt.Errorf("failed to get knob value: %w", err)
+		if prev != cur {
+			d.knobs[i].setValue(cur)
+			if err := d.midiSend(d.midiOut, d.currentMidiChannel(), k.spec.OnMIDICC, cur); err != nil {
+				return fmt.Errorf("failed to send midi: %w", err)
 			}
 
-			if prev != cur {
-				d.knobs[i].setValue(cur)
-				if err := midiSend(d.midiOut, d.currentMidiChannel(), k.spec.OnMIDICC, cur); err != nil {
-					return fmt.Errorf("failed to send midi: %w", err)
-				}
-
-				if d.log {
-					fmt.Printf("%s value changed %d\n", d.knobs[i].spec.Name, d.knobs[i].value)
-				}
-
+			if d.log {
+				fmt.Printf("%s value changed %d\n", d.knobs[i].spec.Name, d.knobs[i].value)
 			}
 
 		}
+
 	}
 
 	return nil
@@ -341,7 +317,8 @@ func (d *Driver) createLedBufferFromButtons() ([]byte, error) {
 }
 
 func (d *Driver) currentMidiChannel() int {
-	// 8 or 9.
+	// Use 8 or 9, not for any particular reason, just to avoid overlapping with any other midi devices
+	// that might be connected.
 	return 0xB7 + d.currentMode()
 }
 
@@ -366,15 +343,18 @@ func (d *Driver) Disco() {
 	}
 }
 
-func knobValueFromBuffer(spec *spec, buf []byte) (int, error) {
-	major := float64(buf[spec.BuferIndex])
-	decimal := float64(buf[spec.BuferIndex+1]) / 256
+func (d *Driver) knobValueFromBuffer(spec *spec, buf []byte) (int, error) {
+	major := float64(buf[spec.BufferIndex])
+	decimal := float64(buf[spec.BufferIndex+1]) / 256
 	result := ((major + decimal) / 16) * 127
 	return int(math.Round(result)), nil
 }
 
-func midiSend(out mididrivers.Out, channel, cc int, velocity int) error {
-	fmt.Printf("MIDI Channel=%d CC=%d Velocity=%d\n", channel, cc, velocity)
+func (d *Driver) midiSend(out mididrivers.Out, channel, cc int, velocity int) error {
+	if d.log {
+		fmt.Printf("MIDI Signal: Channel=%d CC=%d Velocity=%d\n", channel, cc, velocity)
+	}
+
 	if err := out.Send([]byte{byte(channel), byte(cc), byte(velocity)}); err != nil {
 		return fmt.Errorf("failed to send midi: %w", err)
 	}

@@ -1,4 +1,4 @@
-# DESCRIPTION: ALL HOLD
+# DESCRIPTION: TOGGLE + HOLD
 # SPECIALS
 - name: "SHIFT"
   type: "Shift"
@@ -145,7 +145,7 @@
   onVelocity: 127
   offVelocity: 0
 - name: "DECK_A_BUTTON_FX1"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 9
   ledIdx: 25
   onMidiCC: 20
@@ -153,7 +153,7 @@
   onVelocity: 127
   offVelocity: 0
 - name: "DECK_A_BUTTON_FX2"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 8
   ledIdx: 26
   onMidiCC: 22
@@ -175,77 +175,69 @@
   onVelocity: 127
   offVelocity: 0
 - name: "DECK_A_BUTTON_IN"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 20
   ledIdx: 18
   onMidiCC: 28
   offMidiCC: 28
   onVelocity: 127
   offVelocity: 0
-  hotcueIgnore: true
 - name: "DECK_A_BUTTON_OUT"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 3
   ledIdx: 17
   onMidiCC: 30
   offMidiCC: 30
   onVelocity: 127
   offVelocity: 0
-  hotcueIgnore: true
 - name: "DECK_A_BUTTON_BEAT_LEFT"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 2
   ledIdx: 20
   onMidiCC: 32
   offMidiCC: 32
   onVelocity: 127
   offVelocity: 0
-  hotcueIgnore: true
 - name: "DECK_A_BUTTON_BEAT_RIGHT"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 21
   ledIdx: 19
   onMidiCC: 34
   offMidiCC: 34
   onVelocity: 127
   offVelocity: 0
-  hotcueIgnore: true
 - name: "DECK_A_BUTTON_CUE"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 1
   ledIdx: 22
   onMidiCC: 36
   offMidiCC: 36
   onVelocity: 127
   offVelocity: 0
-  hotcueIgnore: true
 - name: "DECK_A_BUTTON_CUP"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 22
   ledIdx: 21
   onMidiCC: 38
   offMidiCC: 38
   onVelocity: 127
   offVelocity: 0
-  hotcueIgnore: true
 - name: "DECK_A_BUTTON_PLAY"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 0
   ledIdx: 24
   onMidiCC: 40
   offMidiCC: 40
-  onVelocity: 127
-  offVelocity: 0
-  hotcueIgnore: true
+  onVelocity: 0
+  offVelocity: 127
 - name: "DECK_A_BUTTON_SYNC"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 23
   ledIdx: 23
   onMidiCC: 42
   offMidiCC: 42
-  onVelocity: 127
-  offVelocity: 0
-  hotcueIgnore: true
+  onVelocity: 0
+  offVelocity: 127
 # DECK B
 - name: "DECK_B_ENCODER_BROWSE"
   type: "Encoder"
@@ -263,7 +255,7 @@
   onVelocity: 127
   offVelocity: 0
 - name: "DECK_B_BUTTON_FX1"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 38
   ledIdx: 27
   onMidiCC: 21
@@ -271,7 +263,7 @@
   onVelocity: 127
   offVelocity: 0
 - name: "DECK_B_BUTTON_FX2"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 37
   ledIdx: 28
   onMidiCC: 23
@@ -294,77 +286,69 @@
   onVelocity: 127
   offVelocity: 0
 - name: "DECK_B_BUTTON_IN"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 12
   ledIdx: 16
   onMidiCC: 29
   offMidiCC: 29
   onVelocity: 127
   offVelocity: 0
-  hotcueIgnore: true
 - name: "DECK_B_BUTTON_OUT"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 19
   ledIdx: 15
   onMidiCC: 31
   offMidiCC: 31
   onVelocity: 127
   offVelocity: 0
-  hotcueIgnore: true
 - name: "DECK_B_BUTTON_BEAT_LEFT"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 18
   ledIdx: 14
   onMidiCC: 33
   offMidiCC: 33
   onVelocity: 127
   offVelocity: 0
-  hotcueIgnore: true
 - name: "DECK_B_BUTTON_BEAT_RIGHT"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 13
   ledIdx: 13
   onMidiCC: 35
   offMidiCC: 35
   onVelocity: 127
   offVelocity: 0
-  hotcueIgnore: true
 - name: "DECK_B_BUTTON_CUE"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 17
   ledIdx: 12
   onMidiCC: 37
   offMidiCC: 37
   onVelocity: 127
   offVelocity: 0
-  hotcueIgnore: true
 - name: "DECK_B_BUTTON_CUP"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 14
   ledIdx: 11
   onMidiCC: 39
   offMidiCC: 39
   onVelocity: 127
   offVelocity: 0
-  hotcueIgnore: true
 - name: "DECK_B_BUTTON_PLAY"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 16
   ledIdx: 10
   onMidiCC: 41
   offMidiCC: 41
-  onVelocity: 127
-  offVelocity: 0
-  hotcueIgnore: true
+  onVelocity: 0
+  offVelocity: 127
 - name: "DECK_B_BUTTON_SYNC"
-  type: "Hold"
+  type: "Toggle"
   bufIdx: 15
   ledIdx: 9
   onMidiCC: 43
   offMidiCC: 43
-  onVelocity: 127
-  offVelocity: 0
-  hotcueIgnore: true
+  onVelocity: 0
+  offVelocity: 127
 # HOTCUES
 - name: "DECK_B_HOTCUE_1"
   type: "Hotcue"
